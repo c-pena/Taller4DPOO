@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 public class VentanaPrincipal extends JFrame {
 
     private PanelOpciones panelEste;
+    private PanelModo panelNorte;
     //private PanelTablero panelTablero;
 
     public VentanaPrincipal() {
@@ -21,7 +22,8 @@ public class VentanaPrincipal extends JFrame {
         panelEste = new PanelOpciones();
         add(panelEste, BorderLayout.EAST);
 
-
+        panelNorte = new PanelModo();
+        add(panelNorte, BorderLayout.NORTH);
 
 
 

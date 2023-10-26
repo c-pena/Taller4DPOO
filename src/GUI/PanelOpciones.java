@@ -21,7 +21,6 @@ public class PanelOpciones extends JPanel {
     public PanelOpciones() {
         setLayout(new GridLayout(15,1));
         setPreferredSize(new Dimension(200, 720));
-        setBorder(new TitledBorder("Opciones"));
         Color colorBtn = new Color(46,153,229);
 
         btnNuevo = new JButton("NUEVO");
