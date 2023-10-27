@@ -8,11 +8,12 @@ public class VentanaPrincipal extends JFrame {
 
     private PanelOpciones panelEste;
     private PanelModo panelNorte;
+    private PanelEstado panelSur;
     //private PanelTablero panelTablero;
 
     public VentanaPrincipal() {
         setTitle("Lights Out");
-        setSize(1280, 720);
+        setSize(960, 720);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,6 +25,9 @@ public class VentanaPrincipal extends JFrame {
 
         panelNorte = new PanelModo();
         add(panelNorte, BorderLayout.NORTH);
+
+        panelSur = new PanelEstado();
+        add(panelSur, BorderLayout.SOUTH);
 
 
 
