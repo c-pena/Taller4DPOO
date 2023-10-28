@@ -36,9 +36,9 @@ public class PanelOpciones extends JPanel {
 
         this.top10 = VentanaPrincipal.getTop10();
 
-        setLayout(new GridLayout(15,1));
+        setLayout(new GridLayout(15, 1));
         setPreferredSize(new Dimension(230, 720));
-        Color colorBtn = new Color(46,153,229);
+        Color colorBtn = new Color(46, 153, 229);
 
         btnNuevo = new JButton("NUEVO");
         btnNuevo.setBackground(colorBtn);
@@ -66,13 +66,13 @@ public class PanelOpciones extends JPanel {
                 dialog.setLocationRelativeTo(getTopLevelAncestor());
                 dialog.setLayout(new BorderLayout());
                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                
+
                 JPanel panelTitulo = new JPanel();
                 panelTitulo.setLayout(new GridLayout(1, 3));
-                panelTitulo.setMaximumSize(new Dimension(200,30));
+                panelTitulo.setMaximumSize(new Dimension(200, 30));
 
                 JLabel lblTitulo = new JLabel("#");
-                Font boldFont = new Font(lblTitulo.getFont().getName(), Font.BOLD, lblTitulo.getFont().getSize()+2);
+                Font boldFont = new Font(lblTitulo.getFont().getName(), Font.BOLD, lblTitulo.getFont().getSize() + 2);
                 lblTitulo.setFont(boldFont);
                 lblTitulo.setBackground(colorBtn);
                 lblTitulo.setOpaque(true);
@@ -95,85 +95,55 @@ public class PanelOpciones extends JPanel {
                 lblTituloPuntaje.setForeground(Color.WHITE);
                 lblTituloPuntaje.setHorizontalAlignment(JLabel.CENTER);
                 panelTitulo.add(lblTituloPuntaje);
+                dialog.add(panelTitulo, BorderLayout.NORTH);
 
-                dialog.add(panelTitulo,BorderLayout.NORTH);
-
-                DefaultListModel<String> listModelPos = new DefaultListModel<>();
-                JList<String> listPos = new JList<>(listModelPos);
-
-                DefaultListModel<String> listModelName = new DefaultListModel<>();
-                JList<String> listName = new JList<>(listModelName);
-
-                DefaultListModel<String> listModelScore = new DefaultListModel<>();
-                JList<String> listScore = new JList<>(listModelScore);
+                DefaultListModel<String> listModel = new DefaultListModel<>();
 
                 Integer counter = 1;
                 for (RegistroTop10 registro : topList) {
                     String labelString = registro.toString();
-                    String pos = counter.toString();
-                    String name = "  " + labelString.split(" ")[0] + " ";
-                    String score = "   " + labelString.split(" ")[2];
-                    listModelPos.addElement(pos);
-                    listModelName.addElement(name);
-                    listModelScore.addElement(score);
+                    String completa = counter.toString() + " " + labelString.split(" ")[0] + " " + labelString.split(" ")[2];
+                    listModel.addElement(completa);
                     counter++;
                 }
 
-                listPos.setCellRenderer(new DefaultListCellRenderer() {
-                    @Override
-                    public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                                boolean isSelected, boolean cellHasFocus) {
-                        Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                        c.setFont(boldFont);
-                        ((JLabel) c).setHorizontalAlignment(JLabel.CENTER);
-                        if (index < 3) {
-                            setForeground(Color.GREEN);
-                        } else if (index < 5) {
-                            setForeground(Color.BLUE);
+                JList<String> list = new JList<>(listModel);
+                list.setCellRenderer(new DefaultListCellRenderer() {
+                    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                        String comp = value.toString();
+                        String pos = comp.split(" ")[0];
+                        String name = "  " + comp.split(" ")[1] + " ";
+                        String score = "   " + comp.split(" ")[2];
+
+                        JPanel panel = new JPanel();
+                        panel.setLayout(new GridLayout(1, 3));
+                        
+                        JLabel lblPos = new JLabel(pos);
+                        lblPos.setFont(boldFont);
+                        lblPos.setHorizontalAlignment(JLabel.CENTER);
+                        JLabel lblName = new JLabel(name);
+                        lblName.setFont(boldFont);
+                        lblName.setHorizontalAlignment(JLabel.CENTER);
+                        JLabel lblScore = new JLabel(score);
+                        lblScore.setFont(boldFont);
+                        lblScore.setHorizontalAlignment(JLabel.CENTER);
+                        if (Integer.valueOf(pos) < 4) {
+                            lblPos.setForeground(Color.GREEN);
+                            lblName.setForeground(Color.GREEN);
+                            lblScore.setForeground(Color.GREEN);
+                        } else if (Integer.valueOf(pos) < 6) {
+                            lblPos.setForeground(Color.BLUE);
+                            lblName.setForeground(Color.BLUE);
+                            lblScore.setForeground(Color.BLUE);
                         }
-                        return c;
+                        panel.add(lblPos);
+                        panel.add(lblName);
+                        panel.add(lblScore);
+                        return panel;
                     }
                 });
 
-                listName.setCellRenderer(new DefaultListCellRenderer() {
-                    @Override
-                    public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                                boolean isSelected, boolean cellHasFocus) {
-                        Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                        c.setFont(boldFont);
-                        ((JLabel) c).setHorizontalAlignment(JLabel.CENTER);
-                        if (index < 3) {
-                            setForeground(Color.GREEN);
-                        } else if (index < 5) {
-                            setForeground(Color.BLUE);
-                        }
-                        return c;
-                    }
-                });
-
-                listScore.setCellRenderer(new DefaultListCellRenderer() {
-                    @Override
-                    public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                                boolean isSelected, boolean cellHasFocus) {
-                        Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                        c.setFont(boldFont);
-                        ((JLabel) c).setHorizontalAlignment(JLabel.CENTER);
-                        if (index < 3) {
-                            setForeground(Color.GREEN);
-                        } else if (index < 5) {
-                            setForeground(Color.BLUE);
-                        }
-                        return c;
-                    }
-                });
-
-                JPanel panel = new JPanel();
-                panel.setLayout(new GridLayout(1, 3));
-                panel.add(listPos);
-                panel.add(listName);
-                panel.add(listScore);
-
-                JScrollPane scrollPane = new JScrollPane(panel);
+                JScrollPane scrollPane = new JScrollPane(list);
 
                 dialog.add(scrollPane);
 
@@ -182,14 +152,13 @@ public class PanelOpciones extends JPanel {
         };
         btnTop10.addActionListener(actionTop10);
 
-
         btnCambiarJugador = new JButton("CAMBIAR JUGADOR");
         btnCambiarJugador.setBackground(colorBtn);
         btnCambiarJugador.setOpaque(true);
         btnCambiarJugador.setBorderPainted(false);
         btnCambiarJugador.setForeground(Color.WHITE);
         ActionListener actionCambiarJugador = new ActionListener() {
-             @Override
+            @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog((JFrame) getTopLevelAncestor(), "Ingrese un nuevo nombre", true);
                 dialog.setSize(380, 120);
@@ -211,14 +180,15 @@ public class PanelOpciones extends JPanel {
                             dialog.dispose();
                         } else {
                             textField.setText("");
-                            JDialog dialogError = new JDialog(dialog, "ERROR: Revisa que el nombre tenga entre 3 y 6 caracteres", true);
+                            JDialog dialogError = new JDialog(dialog,
+                                    "ERROR: Revisa que el nombre tenga entre 3 y 6 caracteres", true);
                             dialogError.setLocationRelativeTo(dialog);
                             dialogError.setSize(380, 30);
                             dialogError.setVisible(true);
                         }
                     }
                 });
-                
+
                 JPanel panel = new JPanel();
                 panel.add(textField);
                 panel.add(okButton);
@@ -244,5 +214,5 @@ public class PanelOpciones extends JPanel {
         add(new JLabel(""));
         add(new JLabel(""));
         add(new JLabel(""));
-    }    
+    }
 }
