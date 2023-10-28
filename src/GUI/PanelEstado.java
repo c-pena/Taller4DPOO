@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 public class PanelEstado extends JPanel {
 
     private JLabel lblJugadas;
-    private JLabel lblNumeroDeJugadas;
+    private static JLabel lblNumeroDeJugadas;
     private JLabel lblJugador;
-    private JLabel lblNombreJugador;
+    private static JLabel lblNombreJugador;
 
     public PanelEstado() {
 
@@ -49,6 +49,14 @@ public class PanelEstado extends JPanel {
         add(new JLabel(""));
         add(new JLabel(""));
         add(new JLabel(""));
+    }
+
+    public static void setJugadas(int jugadas) {
+        lblNumeroDeJugadas.setText(String.valueOf(jugadas));
+    }
+
+    public static void setNombreJugador(String nombreJugador) {
+        lblNombreJugador.setText(nombreJugador);
     }
     
 }

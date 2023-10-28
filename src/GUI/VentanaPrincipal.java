@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.JFrame;
-import javax.swing.border.Border;
 
 import modelo.Top10;
 
@@ -14,11 +13,19 @@ import java.io.UnsupportedEncodingException;
 
 public class VentanaPrincipal extends JFrame {
 
-    private PanelOpciones panelEste;
-    private PanelModo panelNorte;
-    private PanelEstado panelSur;
-    private Top10 top10;
+    private static PanelOpciones panelEste;
+    private static PanelModo panelNorte;
+    private static PanelEstado panelSur;
+
+    private static Top10 top10;
+
     //private PanelTablero panelTablero;
+
+    private static Integer tamano = 3;
+    private static Integer dificultad = 0;
+    // Los niveles de dificultad y sus respectivas jugadas son: facil-tamanio, medio-2*tamanio, dificil-3*tamanio
+    private static String nombreJugador = "Guest";
+
 
     public VentanaPrincipal() {
         setTitle("Lights Out");
@@ -26,6 +33,8 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         top10 = new Top10();
+
+
         String workingDir = System.getProperty("user.dir");
         String filePath = workingDir + File.separator + "data" + File.separator + "top10.csv";
         File top10CSV = new File(filePath);
@@ -47,7 +56,7 @@ public class VentanaPrincipal extends JFrame {
 
         setLayout(new BorderLayout());
 
-        panelEste = new PanelOpciones(top10);
+        panelEste = new PanelOpciones();
         add(panelEste, BorderLayout.EAST);
 
         panelNorte = new PanelModo();
@@ -59,9 +68,45 @@ public class VentanaPrincipal extends JFrame {
         setVisible(true);
     }
 
+
+
     public static void main(String[] args) {
         VentanaPrincipal ventana = new VentanaPrincipal();
     }
 
+    public static void setTamano(Integer tamanoNuevo) {
+        tamano = tamanoNuevo;
+    }
 
+    public static Integer getTamano() {
+        return tamano;
+    }
+
+    public static void setDificultad(Integer dificultadNueva) {
+        dificultad = dificultadNueva;
+    }
+
+    public static Integer getDificultad() {
+        return dificultad;
+    }
+
+    public static void setNombreJugador(String nombreNuevo) {
+        nombreJugador = nombreNuevo;
+        PanelEstado.setNombreJugador(nombreNuevo);
+        repaintVentanaPrincipal();
+    }
+
+    public static String getNombreJugador() {
+        return nombreJugador;
+    }
+
+    public static Top10 getTop10() {
+        return top10;
+    }
+
+    public static void repaintVentanaPrincipal() {
+        panelNorte.repaint();
+        panelEste.repaint();
+        panelSur.repaint();
+    }
 }

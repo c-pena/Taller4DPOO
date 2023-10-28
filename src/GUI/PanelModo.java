@@ -35,7 +35,7 @@ public class PanelModo extends JPanel {
         add(new JLabel(""));
         add(new JLabel(""));
 
-        lblTamanio = new JLabel("Tamano:       ");
+        lblTamanio = new JLabel("Tamano:     ");
         Font boldFont = new Font(lblTamanio.getFont().getName(), Font.BOLD, lblTamanio.getFont().getSize());
         lblTamanio.setFont(boldFont);
         lblTamanio.setForeground(Color.WHITE);
@@ -50,7 +50,7 @@ public class PanelModo extends JPanel {
 
         add(new JLabel(""));
 
-        lblDificultad = new JLabel("Dificultad:");
+        lblDificultad = new JLabel("Dificultad:     ");
         lblDificultad.setFont(boldFont);
         lblDificultad.setForeground(Color.WHITE);
         add(lblDificultad);
@@ -58,10 +58,19 @@ public class PanelModo extends JPanel {
 
         grupoDificultad = new ButtonGroup();
         btnFacil = new JRadioButton("Facil");
+        btnFacil.setBackground(colorLayout);
+        btnFacil.setOpaque(true);
+        btnFacil.setBorderPainted(false);
         btnFacil.setForeground(Color.WHITE);
         btnNormal = new JRadioButton("Normal");
+        btnNormal.setBackground(colorLayout);
+        btnNormal.setOpaque(true);
+        btnNormal.setBorderPainted(false);
         btnNormal.setForeground(Color.WHITE);
         btnDificil = new JRadioButton("Dificil");
+        btnDificil.setBackground(colorLayout);
+        btnDificil.setOpaque(true);
+        btnDificil.setBorderPainted(false);
         btnDificil.setForeground(Color.WHITE);
         grupoDificultad.add(btnFacil);
         grupoDificultad.add(btnNormal);
@@ -71,6 +80,7 @@ public class PanelModo extends JPanel {
         add(btnNormal);
         btnNormal.setHorizontalAlignment(JLabel.CENTER);
         add(btnDificil);
+        btnFacil.doClick();
 
         add(new JLabel(""));
         add(new JLabel(""));
