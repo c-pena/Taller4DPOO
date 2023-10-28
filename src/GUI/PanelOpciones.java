@@ -25,8 +25,9 @@ public class PanelOpciones extends JPanel {
     private JButton btnCambiarJugador;
     private Top10 top10;
 
-    public PanelOpciones(Top10 top10) {
-        this.top10 = top10;
+    public PanelOpciones(Top10 top10Inicial) {
+
+        this.top10 = top10Inicial;
 
         setLayout(new GridLayout(15,1));
         setPreferredSize(new Dimension(230, 720));
