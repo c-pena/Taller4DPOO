@@ -12,7 +12,6 @@ import java.util.Collection;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -101,15 +100,12 @@ public class PanelOpciones extends JPanel {
 
                 DefaultListModel<String> listModelPos = new DefaultListModel<>();
                 JList<String> listPos = new JList<>(listModelPos);
-                listPos.setSelectionModel(new DisabledItemSelectionModel());
 
                 DefaultListModel<String> listModelName = new DefaultListModel<>();
                 JList<String> listName = new JList<>(listModelName);
-                listName.setSelectionModel(new DisabledItemSelectionModel());
 
                 DefaultListModel<String> listModelScore = new DefaultListModel<>();
                 JList<String> listScore = new JList<>(listModelScore);
-                listScore.setSelectionModel(new DisabledItemSelectionModel());
 
                 Integer counter = 1;
                 for (RegistroTop10 registro : topList) {
@@ -210,13 +206,12 @@ public class PanelOpciones extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String nombreNuevo = textField.getText();
-                        if (nombreNuevo.length() > 2 && nombreNuevo.length() < 9) {
+                        if (nombreNuevo.length() > 2 && nombreNuevo.length() < 7) {
                             VentanaPrincipal.setNombreJugador(nombreNuevo);
                             dialog.dispose();
                         } else {
                             textField.setText("");
-                            textField.requestFocus();
-                            JDialog dialogError = new JDialog(dialog, "ERROR: Revisa que el nombre tenga entre 3 y 8 caracteres", true);
+                            JDialog dialogError = new JDialog(dialog, "ERROR: Revisa que el nombre tenga entre 3 y 6 caracteres", true);
                             dialogError.setLocationRelativeTo(dialog);
                             dialogError.setSize(380, 30);
                             dialogError.setVisible(true);
@@ -250,16 +245,4 @@ public class PanelOpciones extends JPanel {
         add(new JLabel(""));
         add(new JLabel(""));
     }    
-
-    static class DisabledItemSelectionModel extends DefaultListSelectionModel {
-        @Override
-        public void setSelectionInterval(int index0, int index1) {
-            super.setSelectionInterval(-1, -1);
-        }
-
-        @Override
-        public void addSelectionInterval(int index0, int index1) {
-            super.setSelectionInterval(-1, -1);
-        }
-    }
 }
