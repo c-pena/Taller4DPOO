@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame {
     private static Integer tamano = 3;
     private static Integer dificultad = 1;
     // Los niveles de dificultad y sus respectivas jugadas son: facil-tamanio, medio-2*tamanio, dificil-3*tamanio
-    private static String nombreJugador = "Guest";
+    private static String nombreJugador = "Gst";
 
 
     public VentanaPrincipal() {
@@ -96,8 +96,6 @@ public class VentanaPrincipal extends JFrame {
 
     public static void setNombreJugador(String nombreNuevo) {
         nombreJugador = nombreNuevo;
-        PanelEstado.setNombreJugador(nombreNuevo);
-        repaintVentanaPrincipal();
     }
 
     public static String getNombreJugador() {

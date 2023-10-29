@@ -11,19 +11,23 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import modelo.Tablero;
+import modelo.Top10;
 
 public class PanelJava2D extends JPanel implements MouseListener{
     
     private static Tablero tablero;
+    private static Top10 top10;
 
     public PanelJava2D() {
         setBackground(Color.WHITE);
         setOpaque(false);
         addMouseListener(this);
-
+        top10 = VentanaPrincipal.getTop10();
         PanelJava2D.tablero = new Tablero(VentanaPrincipal.getTamano());
         tablero.desordenar(VentanaPrincipal.getDificultad()*VentanaPrincipal.getTamano());
         repaint();
@@ -93,6 +97,23 @@ public class PanelJava2D extends JPanel implements MouseListener{
         PanelEstado.setJugadas(tablero.darJugadas());
         VentanaPrincipal.repaintVentanaPrincipal();
         repaint();
+        Boolean estado = tablero.tableroIluminado();
+        if (estado) {
+            Integer puntaje = tablero.calcularPuntaje();
+            Boolean esTop10 = top10.esTop10(puntaje);
+            String nombre = VentanaPrincipal.getNombreJugador();
+            if (esTop10) {
+                top10.agregarRegistro(nombre, puntaje);
+                System.out.println("Puntaje guardado en top 10");
+            }
+            String titulo = "Ganaste " + nombre + "! Tu puntaje final fue: " + puntaje;
+            JDialog gano = new JDialog((JFrame) getTopLevelAncestor(),titulo);
+            gano.setLocationRelativeTo(getTopLevelAncestor());
+            gano.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            gano.setSize(480, 30);
+            gano.setVisible(true);
+            nuevoTablero();
+        }
     }
 
     @Override

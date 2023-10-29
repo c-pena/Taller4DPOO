@@ -36,7 +36,7 @@ public class PanelEstado extends JPanel {
         lblNumeroDeJugadas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         lblJugador = new JLabel("Jugador: ");
         lblJugador.setFont(customFont);
-        lblNombreJugador = new JLabel("Guest");
+        lblNombreJugador = new JLabel("Gst");
         lblNombreJugador.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         add(new JLabel(""));

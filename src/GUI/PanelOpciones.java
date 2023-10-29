@@ -177,7 +177,6 @@ public class PanelOpciones extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog((JFrame) getTopLevelAncestor(), "Ingrese un nuevo nombre", true);
-                dialog.setSize(380, 120);
                 dialog.setLocationRelativeTo(getTopLevelAncestor());
                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 dialog.setSize(300, 100);
@@ -191,14 +190,15 @@ public class PanelOpciones extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String nombreNuevo = textField.getText();
-                        if (nombreNuevo.length() > 2 && nombreNuevo.length() < 7) {
+                        if (nombreNuevo.length() == 3) {
                             VentanaPrincipal.setNombreJugador(nombreNuevo);
+                            PanelEstado.setNombreJugador(nombreNuevo);
+                            VentanaPrincipal.repaintVentanaPrincipal();
                             dialog.dispose();
                         } else {
                             textField.setText("");
-                            JDialog dialogError = new JDialog(dialog,
-                                    "ERROR: Revisa que el nombre tenga entre 3 y 6 caracteres", true);
-                            dialogError.setLocationRelativeTo(dialog);
+                            JDialog dialogError = new JDialog(dialog,"ERROR: Revisa que el nombre tenga 3 caracteres");
+                            dialogError.setLocationRelativeTo(getTopLevelAncestor());
                             dialogError.setSize(380, 30);
                             dialogError.setVisible(true);
                         }
