@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -47,6 +49,22 @@ public class PanelModo extends JPanel {
         comboTamanio.addItem("5x5");
         comboTamanio.addItem("7x7");
         add(comboTamanio);
+        ActionListener actionCambiarTamanio = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox<String> combo = (JComboBox<String>) e.getSource();
+                String selectedOption = combo.getSelectedItem().toString();
+                if (selectedOption.equals("3x3")) {
+                    VentanaPrincipal.setTamano(3);
+                } else if (selectedOption.equals("5x5")) {
+                    VentanaPrincipal.setTamano(5);
+                } else if (selectedOption.equals("7x7")) {
+                    VentanaPrincipal.setTamano(7);
+                }
+                System.out.println("Selected option: " + selectedOption);
+            }
+        };
+        comboTamanio.addActionListener(actionCambiarTamanio);
 
         add(new JLabel(""));
 
@@ -81,6 +99,33 @@ public class PanelModo extends JPanel {
         btnNormal.setHorizontalAlignment(JLabel.CENTER);
         add(btnDificil);
         btnFacil.doClick();
+
+        ActionListener actionCambiarDificultadFacil = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaPrincipal.setDificultad(1);
+                System.out.println("Dificulty changed to: Facil");
+            }
+        };
+        btnFacil.addActionListener(actionCambiarDificultadFacil);
+
+        ActionListener actionCambiarDificultadNormal = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaPrincipal.setDificultad(2);
+                System.out.println("Dificulty changed to: Normal");
+            }
+        };
+        btnNormal.addActionListener(actionCambiarDificultadNormal);
+
+        ActionListener actionCambiarDificultadDificil = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaPrincipal.setDificultad(3);
+                System.out.println("Dificulty changed to: Dificil");
+            }
+        };
+        btnDificil.addActionListener(actionCambiarDificultadDificil);
 
         add(new JLabel(""));
         add(new JLabel(""));

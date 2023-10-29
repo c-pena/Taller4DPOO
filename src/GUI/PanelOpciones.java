@@ -45,12 +45,28 @@ public class PanelOpciones extends JPanel {
         btnNuevo.setOpaque(true);
         btnNuevo.setBorderPainted(false);
         btnNuevo.setForeground(Color.WHITE);
+        ActionListener actionNuevo = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PanelJava2D.nuevoTablero();
+                System.out.println("Tablero nuevo");
+            }
+        };
+        btnNuevo.addActionListener(actionNuevo);
 
         btnReiniciar = new JButton("REINICIAR");
         btnReiniciar.setBackground(colorBtn);
         btnReiniciar.setOpaque(true);
         btnReiniciar.setBorderPainted(false);
         btnReiniciar.setForeground(Color.WHITE);
+        ActionListener actionReiniciar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PanelJava2D.reiniciarTablero();
+                System.out.println("Tablero reiniciado");
+            }
+        };
+        btnReiniciar.addActionListener(actionReiniciar);
 
         btnTop10 = new JButton("TOP-10");
         btnTop10.setBackground(colorBtn);

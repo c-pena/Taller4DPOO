@@ -18,13 +18,19 @@ public class PanelEstado extends JPanel {
 
     public PanelEstado() {
 
-        GridLayout layout = new GridLayout(2,6);
+        GridLayout layout = new GridLayout(3,6);
         setLayout(layout);
+        add(new JLabel(""));
+        add(new JLabel(""));
+        add(new JLabel(""));
+        add(new JLabel(""));
+        add(new JLabel(""));
+        add(new JLabel(""));
 
-        setPreferredSize(new Dimension(760, 50));
+        setPreferredSize(new Dimension(760, 90));
 
         lblJugadas = new JLabel("Jugadas: ");
-        Font customFont = new Font(lblJugadas.getFont().getName(), Font.BOLD, 20);
+        Font customFont = new Font(lblJugadas.getFont().getName(), Font.BOLD, 18);
         lblJugadas.setFont(customFont);
         lblNumeroDeJugadas = new JLabel("0");
         lblNumeroDeJugadas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));

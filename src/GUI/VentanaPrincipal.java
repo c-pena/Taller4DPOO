@@ -16,13 +16,14 @@ public class VentanaPrincipal extends JFrame {
     private static PanelOpciones panelEste;
     private static PanelModo panelNorte;
     private static PanelEstado panelSur;
+    private static PanelJava2D panelCentro;
 
     private static Top10 top10;
 
     //private PanelTablero panelTablero;
 
     private static Integer tamano = 3;
-    private static Integer dificultad = 0;
+    private static Integer dificultad = 1;
     // Los niveles de dificultad y sus respectivas jugadas son: facil-tamanio, medio-2*tamanio, dificil-3*tamanio
     private static String nombreJugador = "Guest";
 
@@ -65,6 +66,9 @@ public class VentanaPrincipal extends JFrame {
         panelSur = new PanelEstado();
         add(panelSur, BorderLayout.SOUTH);
 
+        panelCentro = new PanelJava2D();
+        add(panelCentro, BorderLayout.CENTER);
+
         setVisible(true);
     }
 
@@ -105,8 +109,7 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public static void repaintVentanaPrincipal() {
-        panelNorte.repaint();
-        panelEste.repaint();
         panelSur.repaint();
+        panelCentro.repaint();
     }
 }
